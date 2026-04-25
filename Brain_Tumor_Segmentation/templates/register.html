@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="auth-section" class="auth_section">
+    <div class="form-box">
+        <h2>Register</h2>
+        <form action="{{ url_for('register') }}" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="text" class="form-control" id="mobile" name="mobile" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select class="form-control" id="gender" name="gender" required>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                    <option value="O">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" class="form-control" id="age" name="age" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+            <p><a href="{{ url_for('login') }}">Back to Login</a></p>
+        </form>
+    </div>
+</section>
+{% endblock %}

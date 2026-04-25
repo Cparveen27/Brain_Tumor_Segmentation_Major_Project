@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Life Care - Brain Tumor Detection</title>
+   <meta name="keywords" content="brain tumor, AI diagnosis, medical technology">
+   <meta name="description" content="Advanced AI-powered brain tumor detection and segmentation services.">
+   <meta name="author" content="Life Care">
+   <link rel="shortcut icon" href="static/images/fevicon.ico.png" type="image/x-icon" />
+   <link rel="apple-touch-icon" href="static/images/apple-touch-icon.png">
+
+   <!-- Tailwind CSS for modern styling -->
+   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+   <!-- Font Awesome for icons -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <!-- Google Fonts -->
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+   <style>
+      body {
+         font-family: 'Poppins', sans-serif;
+         background-color: #0f172a;
+         color: #e2e8f0;
+      }
+      .hero-section {
+         background: linear-gradient(135deg, #1e3a8a, #7e22ce);
+         min-height: 100vh;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         position: relative;
+         overflow: hidden;
+      }
+      .hero-section::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: url('static/images/slider-bg.png') no-repeat center center/cover;
+         opacity: 0.2;
+         z-index: 0;
+      }
+      .navbar {
+         background: rgba(0, 0, 0, 0.7);
+         backdrop-filter: blur(10px);
+      }
+      .service-card {
+         transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .service-card:hover {
+         transform: translateY(-10px);
+         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+      }
+      .preloader {
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         background: #0f172a;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         z-index: 9999;
+      }
+      .typewriter {
+         overflow: hidden;
+         border-right: 0.15em solid #7e22ce;
+         white-space: nowrap;
+         margin: 0 auto;
+         letter-spacing: 0.15em;
+         animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+      }
+      @keyframes typing {
+         from { width: 0 }
+         to { width: 100% }
+      }
+      @keyframes blink-caret {
+         from, to { border-color: transparent }
+         50% { border-color: #7e22ce }
+      }
+   </style>
+</head>
+<body>
+   <!-- Preloader -->
+   <div id="preloader" class="preloader">
+      <img src="static/images/loaders/heart-loading2.gif" alt="Loading..." />
+   </div>
+
+   <!-- Navbar -->
+   <nav class="navbar fixed top-0 w-full z-50">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+         <a href="index.html" class="flex items-center">
+            <img src="static/images/logo.png" alt="Life Care Logo" class="h-12">
+         </a>
+         <div class="space-x-6">
+            <a href="{{url_for('home')}}" class="text-white hover:text-purple-400 transition">Home</a>
+            <a href="{{url_for('prediction')}}" class="text-white hover:text-purple-400 transition">Prediction</a>
+            <a class="nav-link" href="{{url_for('history_prediction')}}">View History</a> 
+            <a class="nav-link" href="{{url_for('accuracy_page')}}">Performance Metrics</a> 
+            <a class="nav-link" href="{{url_for('chatbot')}}">Chatbot</a>
+            <a href="{{url_for('index')}}" class="text-white hover:text-purple-400 transition">Logout</a>
+         </div>
+      </div>
+   </nav>
+
+   <!-- Hero Section -->
+   <section class="hero-section">
+      <div class="container mx-auto px-4 text-center relative z-10">
+         <img src="static/images/icon-logo.png" alt="Icon" class="mx-auto mb-6 h-24 animate-pulse">
+         <h1 class="text-5xl font-bold mb-4 typewriter">Welcome to Brain Care</h1>
+         <p class="text-xl mb-8 text-gray-300">We use cutting-edge AI to provide accurate brain tumor detection and segmentation.</p>
+         <a href="{{url_for('prediction')}}" class="bg-purple-600 text-white px-6 py-3 rounded-full hover:bg-purple-700 transition">Get Started</a>
+      </div>
+   </section>
+
+   <!-- Services Section -->
+   <section id="services" class="py-20 bg-gray-900">
+      <div class="container mx-auto px-4">
+         <h2 class="text-4xl font-bold text-center mb-12">Our Services</h2>
+         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="service-card bg-gray-800 p-6 rounded-lg shadow-lg">
+               <i class="fas fa-ambulance text-4xl text-purple-400 mb-4"></i>
+               <h3 class="text-2xl font-semibold mb-2">Emergency Case</h3>
+               <p>Contact us for urgent tumor diagnosis using advanced AI-powered imaging technologies.</p>
+            </div>
+            <div class="service-card bg-gray-800 p-6 rounded-lg shadow-lg">
+               <i class="fas fa-clock text-4xl text-purple-400 mb-4"></i>
+               <h3 class="text-2xl font-semibold mb-2">Our Speciality</h3>
+               <ul class="list-disc list-inside text-gray-300">
+                  <li>Advanced Deep Learning Models: CNN, ResNet, and U-Net for precise tumor classification.</li>
+                  <li>AI-Powered Diagnosis: High-precision MRI scan analysis for tumor detection.</li>
+               </ul>
+            </div>
+            <div class="service-card bg-gray-800 p-6 rounded-lg shadow-lg">
+               <i class="fas fa-hospital text-4xl text-purple-400 mb-4"></i>
+               <h3 class="text-2xl font-semibold mb-2">Our Technology</h3>
+               <p>Fast and accurate brain tumor detection using AI-driven tools for early diagnosis.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- About Section -->
+   <section id="about" class="py-20 bg-gray-800">
+      <div class="container mx-auto px-4">
+         <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+               <img src="static/images/about_03.jpg" alt="About Image" class="rounded-lg shadow-lg w-full">
+            </div>
+            <div class="md:w-1/2 md:pl-8">
+               <h2 class="text-4xl font-bold mb-4">Advanced Brain Tumor Detection</h2>
+               <p class="text-lg mb-4">We provide state-of-the-art tumor detection and segmentation services using AI and machine learning. Our specialized centers ensure early diagnosis for better treatment outcomes.</p>
+               <p class="text-lg">Our cutting-edge algorithms classify tumor types and provide detailed reports on their location patterns.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Footer -->
+   <footer class="py-12 bg-gray-900">
+      <div class="container mx-auto px-4 text-center">
+         <div class="flex justify-center space-x-6 mb-6">
+            <a href="tel:800123456" class="flex items-center text-gray-300 hover:text-purple-400">
+               <i class="fas fa-phone-alt mr-2"></i> 800 123 456
+            </a>
+            <a href="mailto:info@Lifecare.com" class="flex items-center text-gray-300 hover:text-purple-400">
+               <i class="fas fa-envelope mr-2"></i> info@Lifecare.com
+            </a>
+         </div>
+         <p class="text-gray-500">&copy; 2025 Life Care. All rights reserved.</p>
+      </div>
+   </footer>
+
+   <!-- Back to Top -->
+   <a href="#home" class="fixed bottom-6 right-6 bg-purple-600 text-white p-3 rounded-full hover:bg-purple-700 transition">
+      <i class="fas fa-angle-up"></i>
+   </a>
+
+   <!-- Scripts -->
+   <script src="static/js/all.js"></script>
+   <script src="static/js/custom.js"></script>
+   <script>
+      // Preloader
+      window.addEventListener('load', () => {
+         document.getElementById('preloader').style.display = 'none';
+      });
+
+      // Typewriter effect
+      const texts = ['Welcome to Brain Care', 'We Care Your Health', 'We are Expert!'];
+      let index = 0;
+      let charIndex = 0;
+      const typewriterElement = document.querySelector('.typewriter');
+      
+      function type() {
+         if (charIndex < texts[index].length) {
+            typewriterElement.textContent += texts[index].charAt(charIndex);
+            charIndex++;
+            setTimeout(type, 100);
+         } else {
+            setTimeout(erase, 2000);
+         }
+      }
+      
+      function erase() {
+         if (charIndex > 0) {
+            typewriterElement.textContent = texts[index].substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(erase, 50);
+         } else {
+            index = (index + 1) % texts.length;
+            setTimeout(type, 500);
+         }
+      }
+      
+      document.addEventListener('DOMContentLoaded', () => {
+         setTimeout(type, 1000);
+      });
+   </script>
+</body>
+</html>
